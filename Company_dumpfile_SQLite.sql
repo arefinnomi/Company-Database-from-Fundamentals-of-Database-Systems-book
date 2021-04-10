@@ -2,9 +2,9 @@ BEGIN TRANSACTION;
 CREATE TABLE IF NOT EXISTS "employee" (
 	"ssn"	bigint NOT NULL,
 	"name"	varchar(100),
-	"fname"	varchar(100) DEFAULT NULL,
-	"minit"	varchar(100) DEFAULT NULL,
-	"lname"	varchar(100) DEFAULT NULL,
+	"fname"	varchar(100) NOT NULL,
+	"minit"	varchar(100) DEFAULT '',
+	"lname"	varchar(100) NOT NULL,
 	"bdate"	date DEFAULT NULL,
 	"address"	text,
 	"salary"	float DEFAULT NULL,
@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS "employee" (
 );
 CREATE TABLE IF NOT EXISTS "department" (
 	"dname"	varchar(100),
-	"dnumber"	int NOT NULL UNIQUE,
-	"mgr_ssn"	bigint NOT NULL,
+	"dnumber"	int NOT NULL,
+	"mgr_ssn"	bigint NOT NULL UNIQUE,
 	"mgr_start_date"	date NOT NULL,
 	FOREIGN KEY("mgr_ssn") REFERENCES "employee"("ssn"),
 	PRIMARY KEY("dnumber")
